@@ -15,6 +15,7 @@ format:
     smaller: true
     slideNumber: true   # Optional: Displays slide numbers
     css: custom-revealjs.css
+    embed-resources: true
 
 ---
 
@@ -51,13 +52,13 @@ Learn more at <a href="https://murraylax.org/ecodata/" target="_blank">https://m
 
 :::
 
-<div style="position:absolute; bottom:-55px; right:-200px;">
+<div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
 ## The Good, The Bad, and the Ugly
 
-<div style="position:absolute; top:90px; right:-200px;">
+<div style="position:absolute; top:90px; right:-150px;">
   <img src="gbu-flop.png" width="400" alt="QR Code">
 </div>
 
@@ -85,7 +86,7 @@ Learn more at <a href="https://murraylax.org/ecodata/" target="_blank">https://m
   
   - Very difficult to see much of the text
 
-<div style="position:absolute; bottom:-55px; right:-200px;">
+<div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
@@ -107,7 +108,7 @@ Learn more at <a href="https://murraylax.org/ecodata/" target="_blank">https://m
     
   - Do everything with 3-4 lines of code
     
-<div style="position:absolute; bottom:-55px; right:-200px;">
+<div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
@@ -135,7 +136,7 @@ mydata <- mydata |>
   filter(Date >= "2007-01-01" & Date <= "2016-12-31")
 ```
 
-<div style="position:absolute; bottom:-55px; right:-200px;">
+<div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
@@ -146,7 +147,7 @@ ggplot_ecodata_facet(mydata, ncol = 2, title = "Unemployment and Inflation in U.
   geom_recession()
 ```
 
-<div style="position:absolute; bottom:-55px; right:-200px;">
+<div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
@@ -162,7 +163,7 @@ ecodata_description_table(mydata)
 ```
 </div>
 
-<div style="position:absolute; bottom:-55px; right:-200px;">
+<div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
@@ -181,6 +182,12 @@ ecodata_description_table(mydata)
   - Used in other courses: R is used in econometrics, statistics, data science, etc.
   
   - Used in industry, even among those who are not data scientists
+  
+  - Even more important / relevant with AI
+  
+    -   AI assistance makes coding more accessible
+    
+    -   Verification and reproducibility is key with AI-generated content
 
 ::::
 
@@ -192,7 +199,7 @@ ecodata_description_table(mydata)
 
 :::
 
-<div style="position:absolute; bottom:-55px; right:-200px;">
+<div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
@@ -206,7 +213,7 @@ ecodata_description_table(mydata)
   
   - Easy to do the hard things, *but hard to do the easy things*
   
-  - ***This is *Principles of Microeconomics*, not what I signed up for!*** 
+  - ***This is *Principles of Macroeconomics*, not what I signed up for!*** 
 
 ::::
 
@@ -218,7 +225,16 @@ ecodata_description_table(mydata)
 
 :::
 
-<div style="position:absolute; bottom:-55px; right:-200px;">
+
+**ECODATA Package**
+
+  - Gentle learning curve!
+  
+  - Easy to do easy things
+  
+  - Use simple reproducible code to ***analyze macroeconomics principles*** 
+
+<div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
@@ -234,7 +250,7 @@ ecodata_description_table(mydata)
   
   - *ECODATA* package is *easy to learn*, *easy to use for easy things*
 
-<div style="position:absolute; bottom:-55px; right:-200px;">
+<div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
@@ -254,6 +270,6 @@ ecodata_description_table(mydata)
   
   3. Plot the U.S. unemployment rate along with Wisconin's and California's. What do you notice about the differences in the unemployment rates between these states?
 
-<div style="position:absolute; bottom:-55px; right:-200px;">
+<div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
