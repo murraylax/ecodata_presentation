@@ -1,0 +1,25 @@
+---
+title: "Posit Cloud Instructions"
+format: beamer
+---
+
+![](slide.png)
+
+::: {.columns}
+
+:::: {.column width="75%"}
+
+| James M. Murray, Ph.D.
+| University of Wisconsin-La Crosse
+| Email: \texttt{jmurray@uwlax.edu}
+| \textbf{St. Louis Fed Professors' Conference}
+
+::::
+
+:::: {.column width="20%"}
+
+![](./qrcode.png){width=0.75in}
+
+::::
+
+:::

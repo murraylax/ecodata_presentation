@@ -1,5 +1,9 @@
 ---
 title: "Data Visualization Using R in Undergraduate Macroeconomics"
+execute:
+  echo: true
+  message: false
+  warning: false
 author: 
   - name: "James M. Murray, Ph.D."
     affiliation: "Department of Economics<br/>University of Wisconsin-La Crosse<br/>Email: jmurray@uwlax.edu<p>St. Louis Fed Professors' Conference</p>"
@@ -8,14 +12,86 @@ date-format: long
 format: 
   revealjs:
     theme: sky
+    smaller: true
     slideNumber: true   # Optional: Displays slide numbers
     css: custom-revealjs.css
 
 ---
 
+# Data Visualization Using R in Undergraduate Macroeconomics
+
+Want to start using the ***ECODATA*** R package **right now**?
+
+Live RStudio project on <a href="https://posit.cloud/content/9084731" target="_blank">Posit Cloud!</a>
+
+  1. Login / Create Posit Cloud account at <a href="https://posit.cloud" target="_blank">https://posit.cloud</a>
+  
+  1. Login / Create FRED account at <a href="https://fred.stlouisfed.org/" target="_blank">https://fred.stlouisfed.org/</a><br/>(click *My Account* at top left)
+  
+  1. Create your own copy of the *ECODATA Exercises* project by following: <p><a href="https://posit.cloud/content/9084731" target="_blank">https://posit.cloud/content/9084731</a></p>
+  
+  1. Get your FRED key at <a href="https://fredaccount.stlouisfed.org/apikeys" target="_blank">https://fredaccount.stlouisfed.org/apikeys</a>
+  
+  1. Copy that 32-character key and in the Posit Cloud console, set the key:<br/>
+  `ecodata::ecodata_set_fredkey("abcd1234efgh5678ijkl9012mnop3456")`
+
+Learn more at <a href="https://murraylax.org/ecodata/" target="_blank">https://murraylax.org/ecodata/</a>
+
+## Great Recession & Slow Recovery
+
+::: {layout-ncol=2}
+
+![](./fred-bad.png){width=80%}
+
+![](./wb-bad-1.png){width=50%}
+
+![](./fred-bad-2.png){width=80%}
+
+![](./wb-bad-2.png){width=50%}
+
+:::
+
+<div style="position:absolute; bottom:-55px; right:-200px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
+## The Good, The Bad, and the Ugly
+
+<div style="position:absolute; top:90px; right:-200px;">
+  <img src="gbu-flop.png" width="400" alt="QR Code">
+</div>
+
+### The Good:
+
+  - Student explored data on both FRED and World Bank Data
+  
+  - Student picked relevant variables, explained it correctly
+  
+  - Cogent international comparisons of the great recession 
+
+<p/>
+
+### The Bad:
+
+  - Great interactive tools made for poor visualizations (at least default values)
+  
+  - Time consuming to reproduce - Return to website, download image, etc.
+
+<p/>
+  
+### The Ugly:
+
+  - Inconsistent style across FRED and World Bank Data
+  
+  - Very difficult to see much of the text
+
+<div style="position:absolute; bottom:-55px; right:-200px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
 ## Introduction
 
-  - Created an R package, ***ecodata***, to facilitate the use of data in undergraduate macroeconomics courses
+  - Created an R package, ***ecodata***, to facilitate visualizing data in undergraduate macroeconomics courses
   
   - Wrapper for the ***fredr***, ***wbstats***, and ***ggplot2*** packages
   
@@ -25,29 +101,159 @@ format:
     
     - Produce professional-quality data visualizations
     
+    - View descriptions of the data
+    
+    - Cite sources
+    
+  - Do everything with 3-4 lines of code
+    
 <div style="position:absolute; bottom:-55px; right:-200px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
-
-
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
-
-## Bullets
-
-When you click the **Render** button a document will be generated that includes:
-
--   Content authored with markdown
--   Output from executable code
-
-## Code
-
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Example: Fetch the Data
 
 ```{r}
-1 + 1
+# Load the library
+library(ecodata)
+library(tidyverse)
+
+# Identify what variables I want
+# Includes both FRED and World Bank Data sources
+variable_sources <- c(
+  "https://fred.stlouisfed.org/series/UNRATE",
+  "https://fred.stlouisfed.org/series/AURUKM",
+  "https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG?locations=US",
+  "https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG?locations=GB"
+)
+
+# Fetch the data 
+mydata <- get_ecodata(variable_sources)
+
+# Get only Great Recession + Recovery
+mydata <- mydata |>
+  filter(Date >= "2007-01-01" & Date <= "2016-12-31")
 ```
 
+<div style="position:absolute; bottom:-55px; right:-200px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
 
+## Example: Plot the Data
+
+```{r}
+ggplot_ecodata_facet(mydata, ncol = 2, title = "Unemployment and Inflation in U.S. and U.K.") +
+  geom_recession()
+```
+
+<div style="position:absolute; bottom:-55px; right:-200px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
+## Example: Data Description
+
+```{r, eval = FALSE}
+ecodata_description_table(mydata)
+```
+
+<div class="scrollable-table">
+```{r, echo = FALSE}
+ecodata_description_table(mydata)
+```
+</div>
+
+<div style="position:absolute; bottom:-55px; right:-200px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
+## Why Scripting Languages?
+
+::: {.columns}
+
+:::: {.column width="62%"}
+
+  - Reproducible: The code is the set of instructions for what you created
+  
+  - Efficient: Difficult to make the first graph, but it's easy to make the 2nd and 100th graphs!
+  
+  - Flexible: Can easily change the data, the graph, the labels, etc.
+  
+  - Used in other courses: R is used in econometrics, statistics, data science, etc.
+  
+  - Used in industry, even among those who are not data scientists
+
+::::
+
+:::: {.column width="33%"}
+
+![](./computer.png){width=100%}
+
+::::
+
+:::
+
+<div style="position:absolute; bottom:-55px; right:-200px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
+## Why Avoid Scripting Languages? 
+
+::: {.columns}
+
+:::: {.column width="62%"}
+
+  - Steep learning curve
+  
+  - Easy to do the hard things, *but hard to do the easy things*
+  
+  - ***This is *Principles of Microeconomics*, not what I signed up for!*** 
+
+::::
+
+:::: {.column width="33%"}
+
+![](./frustrated.png){width=100%}
+
+::::
+
+:::
+
+<div style="position:absolute; bottom:-55px; right:-200px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
+## Why *ECODATA* for Principles of Macroeconomics?
+
+  - Data visualization is a key skill for *everyone*
+  
+  - Early introduction makes subsequent classes easier
+  
+  - Data is used throughout the economics discipline, it should be used throughout economics curriculum
+  
+  - Repeated practice throughout undergraduate degree builds mastery
+  
+  - *ECODATA* package is *easy to learn*, *easy to use for easy things*
+
+<div style="position:absolute; bottom:-55px; right:-200px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
+## Best Practices for Principles-Level  
+  
+  * Show students worked-out examples - See my vignettes!
+  
+  * Use prompts that require only 3-4 lines of code
+  
+  * Make economics real: Compare theoretical predictions with recent data
+  
+## Example
+
+  1. Plot the U.S. unemployment rate from 2006-2016
+  
+  2. Describe the behavior of the unemployment rate before, during, and years after the recession. What do you notice about economic recoveries?
+  
+  3. Plot the U.S. unemployment rate along with Wisconin's and California's. What do you notice about the differences in the unemployment rates between these states?
+
+<div style="position:absolute; bottom:-55px; right:-200px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>

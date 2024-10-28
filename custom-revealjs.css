@@ -8,6 +8,34 @@
   color: #444 !important;    /* Optional: Subtle color for better aesthetics */
 }
 
+
+.scrollbar-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow-x: auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.scrollable-table {
+  overflow: auto !important;
+  max-width: 100% !important;
+  max-height: 500px; /* Adjust as needed */
+  margin: 0 auto !important; /* Center the content */
+  background-color: white !important;
+  padding: 10px !important;  /* Optional: Add padding around the table */
+  border-radius: 5px !important;  /* Optional: Rounded corners for better aesthetics */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;  /* Optional: Subtle shadow */
+}
+
+.column {
+  padding: 10px; /* Optional: Add padding inside each column */
+}
+
+
 .qr-code {
   position: absolute !important;
   bottom: 10px !important;
@@ -15,14 +43,6 @@
   width: 80px !important;
   height: 80px !important;
   z-index: 1000 !important; /* Ensure it appears above other elements */
-}
-
-
-/* General body text */
-body {
-  font-family: 'Source Serif Pro', serif !important;
-  font-size: 22px !important;  /* Adjust main text size */
-  line-height: 1.4 !important;  /* Better readability */
 }
 
 /* Titles and headings (h1, h2, h3) */
