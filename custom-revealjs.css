@@ -35,7 +35,6 @@
   padding: 10px; /* Optional: Add padding inside each column */
 }
 
-
 .qr-code {
   position: absolute !important;
   bottom: 10px !important;
@@ -57,7 +56,7 @@ h1 {
 h2 {
   font-family: 'Source Serif Pro', serif !important;
   font-weight: 700 !important;
-  font-size: 60px !important;
+  font-size: 55px !important;
   text-transform: none !important;
   letter-spacing: 0.0em !important;
 }

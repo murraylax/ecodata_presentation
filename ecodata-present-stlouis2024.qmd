@@ -13,9 +13,12 @@ format:
   revealjs:
     theme: sky
     smaller: true
-    slideNumber: true   # Optional: Displays slide numbers
-    css: custom-revealjs.css
+    slideNumber: true   # Displays slide numbers
+    slide-number-start-at: 1  # Start counting at the second slide
     embed-resources: true
+    template-partials:
+      - title-slide.html
+    css: custom-revealjs.css
 
 ---
 
@@ -27,16 +30,20 @@ Live RStudio project on <a href="https://posit.cloud/content/9084731" target="_b
 
   1. Login / Create Posit Cloud account at <a href="https://posit.cloud" target="_blank">https://posit.cloud</a>
   
-  1. Login / Create FRED account at <a href="https://fred.stlouisfed.org/" target="_blank">https://fred.stlouisfed.org/</a><br/>(click *My Account* at top left)
-  
   1. Create your own copy of the *ECODATA Exercises* project by following: <p><a href="https://posit.cloud/content/9084731" target="_blank">https://posit.cloud/content/9084731</a></p>
   
+  1. Login / Create FRED account at <a href="https://fred.stlouisfed.org/" target="_blank">https://fred.stlouisfed.org/</a><br/>(click *My Account* at top left)
+
   1. Get your FRED key at <a href="https://fredaccount.stlouisfed.org/apikeys" target="_blank">https://fredaccount.stlouisfed.org/apikeys</a>
   
   1. Copy that 32-character key and in the Posit Cloud console, set the key:<br/>
   `ecodata::ecodata_set_fredkey("abcd1234efgh5678ijkl9012mnop3456")`
 
 Learn more at <a href="https://murraylax.org/ecodata/" target="_blank">https://murraylax.org/ecodata/</a>
+
+<div style="position:absolute; bottom:200px; right:-150px;">
+  <img src="qrcode.png" width="240" alt="QR Code">
+</div>
 
 ## Great Recession & Slow Recovery
 
@@ -107,11 +114,16 @@ Learn more at <a href="https://murraylax.org/ecodata/" target="_blank">https://m
     - Cite sources
     
   - Do everything with 3-4 lines of code
+  
+  - **Not a substitute** for *fredr*, *wbstats*, or *ggplot2*, nor for exploring data and using interactive tools in FRED and World Bank Data
+  
+<a href="https://posit.cloud/content/9084731" target="_blank"><strong>Let's Try It Out!</strong></a>
     
 <div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
+<!--
 ## Example: Fetch the Data
 
 ```{r}
@@ -143,8 +155,10 @@ mydata <- mydata |>
 ## Example: Plot the Data
 
 ```{r}
-ggplot_ecodata_facet(mydata, ncol = 2, title = "Unemployment and Inflation in U.S. and U.K.") +
-  geom_recession()
+ggplot_ecodata_facet(mydata, 
+                     ncol = 2, 
+                     title = "Unemployment and Inflation in U.S. and U.K.",
+                     plot.recession = TRUE)
 ```
 
 <div style="position:absolute; bottom:-55px; right:-150px;">
@@ -166,6 +180,7 @@ ecodata_description_table(mydata)
 <div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
+-->
 
 ## Why Scripting Languages?
 
@@ -248,8 +263,6 @@ ecodata_description_table(mydata)
   
   - Repeated practice throughout undergraduate degree builds mastery
   
-  - *ECODATA* package is *easy to learn*, *easy to use for easy things*
-
 <div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
@@ -258,17 +271,118 @@ ecodata_description_table(mydata)
   
   * Show students worked-out examples - See my vignettes!
   
-  * Use prompts that require only 3-4 lines of code
+  * Create prompts that require only 1-2 lines of code to answer the question
   
   * Make economics real: Compare theoretical predictions with recent data
   
+  * Be mindful of opportunity costs - Do more data analysis means doing less of something else in the class
+  
+    - I plan on 3 or 4 short assignments for the semester
+  
+<div style="position:absolute; bottom:-55px; right:-150px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>  
+  
 ## Example
 
-  1. Plot the U.S. unemployment rate from 2006-2016
+  1. Download data for the U.S. unemployment rate, California unemployment rate, and Wisconsin unemployment rate from FRED, and filter the data to only include the years 2006-2016.
+
+  2. Plot the U.S. unemployment rate from 2006-2016. Describe the behavior of the unemployment rate before, during, and years after the recession. Is the situation back to normal at the end of the recession? What do you notice about economic recoveries?
   
-  2. Describe the behavior of the unemployment rate before, during, and years after the recession. What do you notice about economic recoveries?
+  3. Plot the U.S. unemployment rate along with Wisconin's and California's unemployment rate. What do you notice about the differences in the unemployment rates between these states?
+
+<div style="position:absolute; bottom:-55px; right:-150px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
+## Example - \#1: Download Data
+
+```{r}
+data_sources <- c(
+  "https://fred.stlouisfed.org/series/UNRATE",
+  "https://fred.stlouisfed.org/series/WIUR",
+  "https://fred.stlouisfed.org/series/CAUR"
+)
+
+variable_names <- c("U.S. Unemployment Rate", "Wisconsin Unemployment Rate", "California Unemployment Rate")
+
+# Download the data
+udata <- get_ecodata(data_sources, variable_names)
+
+# Filter for only 2006-2013
+udata <- udata |>
+  filter(Date >= "2006-01-01", Date <= "2018-12-31")
+```
+
+<div style="position:absolute; bottom:-55px; right:-150px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
+## Example - \#2: U.S. Unemployment Rate
+
+```{r}
+ggplot_ecodata_ts(udata, 
+                  variables = "U.S. Unemployment Rate",
+                  title = "U.S. Unemployment Rate",
+                  plot.recessions = TRUE)
+```
+
+<div style="position:absolute; bottom:-55px; right:-150px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
+## Example - \#3: Plot U.S., Wisconsin, and California Unemployment Rates
+
+```{r}
+ggplot_ecodata_ts(udata, title = "Unemployment Rates", plot.recessions = TRUE)
+```
+
+<div style="position:absolute; bottom:-55px; right:-150px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
+## Instructional Vignettes
+
+  - <a href="https://murraylax.org/ecodata/supply_demand_housing.html" target="_blank"><strong>Supply and Demand for Housing</strong></a>
   
-  3. Plot the U.S. unemployment rate along with Wisconin's and California's. What do you notice about the differences in the unemployment rates between these states?
+      - Data on construction prices, new house prices, and housing starts.
+      
+      - Does data match a supply and demand model prediction?
+    <p/>
+
+  - <a href="https://murraylax.org/ecodata/exchangerates_interestrates.html" target="_blank"><strong>Exchange Rates and Interest Rates</strong></a>
+  
+      - Data on exchange rates and interest rates interest rates in U.K. and U.S.
+      
+      - Does data matches predictions from a supply and demand model for currencies?
+    <p/>
+
+  - <a href="https://murraylax.org/ecodata/unemployment_recessions.html" target="_blank"><strong>Unemployment and Recessions</strong></a>
+  
+      - State and national data on unemployment and during the 2008-2009 recession 
+
+<div style="position:absolute; bottom:-55px; right:-150px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
+## What Are Your Ideas?
+
+  - You have or envision a short low-stakes assignment where students visualize macroeconomic data?
+  
+  - Answer these questions about one such assignment:
+  
+    1. What is the macroeconomics concept or theory that students apply?
+    
+    2. What variables do the students need?
+    
+    3. What will the students discover?
+  
+  - Share your ideas! Email: <strong>jmurray@uwlax.edu</strong>
+  
+  - What me to create instructional vignette around your idea? Let me know!
+  
+<p/><p/>
+<h1>Thank you!</h1>
 
 <div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
