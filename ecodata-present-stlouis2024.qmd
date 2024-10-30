@@ -15,6 +15,7 @@ format:
     smaller: true
     slideNumber: true   # Displays slide numbers
     slide-number-start-at: 1  # Start counting at the second slide
+    footer: '<a href="https://murraylax.org/ecodata/" target="_blank">https://murraylax.org/ecodata/</a>'
     embed-resources: true
     template-partials:
       - title-slide.html
@@ -30,25 +31,24 @@ library(tidyverse)
 
 # Data Visualization Using R in Undergraduate Macroeconomics
 
-Want to start using the ***ECODATA*** R package **right now**?
-
-Live RStudio project on <a href="https://posit.cloud/content/9084731" target="_blank">Posit Cloud!</a>
+Want to start using the ***ECODATA*** R package **right now**? Live on <a href="https://posit.cloud/content/9084731" target="_blank">Posit Cloud!</a>
 
   1. Login / Create Posit Cloud account at <a href="https://posit.cloud" target="_blank">https://posit.cloud</a>
   
   1. Create your own copy of the *ECODATA Exercises* project by following: <p><a href="https://posit.cloud/content/9084731" target="_blank">https://posit.cloud/content/9084731</a></p>
   
-  1. Login / Create FRED account at <a href="https://fred.stlouisfed.org/" target="_blank">https://fred.stlouisfed.org/</a><br/>(click *My Account* at top left)
+  1. Click `+ Save a Permanent Copy` (top-right corner) to save your copy
+  
+  1. Login / Create FRED account at <a href="https://fred.stlouisfed.org/" target="_blank">https://fred.stlouisfed.org/</a><br/>(click *My Account* at top right)
 
   1. Get your FRED key at <a href="https://fredaccount.stlouisfed.org/apikeys" target="_blank">https://fredaccount.stlouisfed.org/apikeys</a>
   
   1. Copy that 32-character key and in the Posit Cloud console, set the key:<br/>
-  `ecodata::ecodata_set_fredkey("abcd1234efgh5678ijkl9012mnop3456")`
+  `ecodata::ecodata_set_fredkey("abcd1234efgh5678ijkl9012mnop3456")`<br/>
+  (insert your own 32-character key, this one won't work)
 
-Learn more at <a href="https://murraylax.org/ecodata/" target="_blank">https://murraylax.org/ecodata/</a>
-
-<div style="position:absolute; bottom:200px; right:-150px;">
-  <img src="qrcode.png" width="240" alt="QR Code">
+<div style="position:absolute; bottom:230px; right:-150px;">
+  <img src="qrcode.png" width="220" alt="QR Code">
 </div>
 
 ## Great Recession & Slow Recovery
@@ -74,6 +74,7 @@ Learn more at <a href="https://murraylax.org/ecodata/" target="_blank">https://m
 <div style="position:absolute; top:90px; right:-150px;">
   <img src="gbu-flop.png" width="400" alt="QR Code">
 </div>
+<br/>
 
 ### The Good:
 
@@ -81,21 +82,17 @@ Learn more at <a href="https://murraylax.org/ecodata/" target="_blank">https://m
   
   - Student picked relevant variables, explained it correctly
   
-  - Cogent international comparisons of the great recession 
-
-<p/>
+  - Cogent international comparisons of the great recession <br/><br/>
 
 ### The Bad:
 
-  - Great interactive tools made for poor visualizations (at least default values)
+  - Great interactive data tools can make for poor presentation visual aids
   
-  - Time consuming to reproduce - Return to website, download image, etc.
+  - Time consuming to reproduce - Return to website, select features and time periods, download image, etc.<br/><br/>
 
-<p/>
-  
 ### The Ugly:
 
-  - Inconsistent style across FRED and World Bank Data
+  - Inconsistent style across FRED and World Bank Data graphs
   
   - Very difficult to see much of the text
 
@@ -103,15 +100,17 @@ Learn more at <a href="https://murraylax.org/ecodata/" target="_blank">https://m
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
-## Introduction
+## Introducing the *ECODATA* R Package
 
-  - Created an R package, ***ecodata***, to facilitate visualizing data in undergraduate macroeconomics courses
+  - I created an R package, ***ecodata***, to facilitate visualizing data in undergraduate macroeconomics courses
+  
+  - Designed for students and novices in R, statistics, and data analysis
   
   - Wrapper for the ***fredr***, ***wbstats***, and ***ggplot2*** packages
   
   - Makes it easy to:
   
-    - Download data from the Federal Reserve Economic Data (FRED) and World Bank databases
+    - Download data from Federal Reserve Economic Data (FRED) and World Bank Data
     
     - Produce professional-quality data visualizations
     
@@ -219,7 +218,9 @@ ecodata_description_table(mydata)
   
   - Instructional Vignettes
   
-      - Short applications of the package to macroeconomic principles
+      - Focus is learning *macroeconomics*, using data
+  
+      - Worked-out examples using the package to explore macroeconomic principles
 
 <div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
@@ -229,7 +230,7 @@ ecodata_description_table(mydata)
 
 ::: {.columns}
 
-:::: {.column width="62%"}
+:::: {.column width="57%"}
 
   - Reproducible: The code is the set of instructions for what you created
   
@@ -237,8 +238,18 @@ ecodata_description_table(mydata)
   
   - Flexible: Can easily change the data, the graph, the labels, etc.
   
+::::
+
+:::: {.column width="40%"}
+
+![](./computer.png){width=100%}
+
+::::
+
+:::
+
   - Used in other courses: R is used in econometrics, statistics, data science, etc.
-  
+
   - Used in industry, even among those who are not data scientists
   
   - Even more important / relevant with AI
@@ -247,15 +258,6 @@ ecodata_description_table(mydata)
     
     -   Verification and reproducibility is key with AI-generated content
 
-::::
-
-:::: {.column width="33%"}
-
-![](./computer.png){width=100%}
-
-::::
-
-:::
 
 <div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
@@ -265,17 +267,17 @@ ecodata_description_table(mydata)
 
 ::: {.columns}
 
-:::: {.column width="62%"}
+:::: {.column width="57%"}
 
   - Steep learning curve
   
   - Easy to do the hard things, *but hard to do the easy things*
   
-  - ***This is *Principles of Macroeconomics*, not what I signed up for!*** 
+  - ***This is Principles of Macroeconomics, not what I signed up for!*** 
 
 ::::
 
-:::: {.column width="33%"}
+:::: {.column width="40%"}
 
 ![](./frustrated.png){width=100%}
 
@@ -334,6 +336,8 @@ ecodata_description_table(mydata)
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
+<!--  
+
 ## Best Practices for Principles-Level  
   
   * Show students worked-out examples - See my vignettes!
@@ -350,7 +354,6 @@ ecodata_description_table(mydata)
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>  
 
-<!--  
 ## Example
 
   1. Download data for the U.S. unemployment rate, California unemployment rate, and Wisconsin unemployment rate from FRED, and filter the data to only include the years 2006-2016.
@@ -413,7 +416,7 @@ ggplot_ecodata_ts(udata, title = "Unemployment Rates", plot.recessions = TRUE)
 
 ## What Are Your Ideas?
 
-  - You have or envision a short low-stakes assignment where students visualize macroeconomic data?
+  - Do you have or envision a short low-stakes assignment where students visualize macroeconomic data?
   
   - Answer these questions about one such assignment:
   
@@ -426,8 +429,8 @@ ggplot_ecodata_ts(udata, title = "Unemployment Rates", plot.recessions = TRUE)
   - Share your ideas! Email: <strong>jmurray@uwlax.edu</strong>
   
   - What me to create instructional vignette around your idea? Let me know!
-  
-<p/><p/>
+
+<br/><br/>  
 <h1>Thank you!</h1>
 
 <div style="position:absolute; bottom:-55px; right:-150px;">

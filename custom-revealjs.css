@@ -1,11 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&display=swap');
 
+/* Remove extra margin and padding from columns */
+.reveal .columns {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.reveal .column {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Remove margin and padding before unordered and ordered lists */
+.reveal ul,
+.reveal ol {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 .reveal .slide-number {
   top: 10px !important;      /* Adjust distance from the top */
   right: 10px !important;    /* Adjust distance from the right */
   position: absolute !important;
   font-size: 0.9em !important;  /* Optional: Slightly smaller font size */
   color: #444 !important;    /* Optional: Subtle color for better aesthetics */
+}
+
+
+/* Footer styling: Positioned at the bottom of every slide */
+.reveal .footer {
+  position: absolute !important;
+  bottom: 10px !important;
+  left: 0 !important;
+  width: 100% !important;
+  text-align: center !important;
+  font-size: 0.8em !important;
+  color: #666 !important;
+  padding: 5px 0 !important;
 }
 
 
@@ -48,7 +81,7 @@
 h1 {
   font-family: 'Source Serif Pro', serif !important;
   font-weight: 700 !important;
-  font-size: 70px !important;  /* Smaller title size */
+  font-size: 60px !important;  /* Smaller title size */
   text-transform: none !important;  /* Prevents all caps */
   letter-spacing: 0.0em !important;  /* Subtle spacing */
 }
@@ -56,7 +89,7 @@ h1 {
 h2 {
   font-family: 'Source Serif Pro', serif !important;
   font-weight: 700 !important;
-  font-size: 55px !important;
+  font-size: 50px !important;
   text-transform: none !important;
   letter-spacing: 0.0em !important;
 }
