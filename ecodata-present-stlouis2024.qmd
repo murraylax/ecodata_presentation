@@ -22,6 +22,12 @@ format:
 
 ---
 
+```{r, include=FALSE}
+# Load the library
+library(ecodata)
+library(tidyverse)
+```
+
 # Data Visualization Using R in Undergraduate Macroeconomics
 
 Want to start using the ***ECODATA*** R package **right now**?
@@ -123,14 +129,20 @@ Learn more at <a href="https://murraylax.org/ecodata/" target="_blank">https://m
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
-<!--
-## Example: Fetch the Data
+## Fast Example: Two Lines of Code
 
 ```{r}
-# Load the library
-library(ecodata)
-library(tidyverse)
+mydata <- get_ecodata("https://fred.stlouisfed.org/series/MORTGAGE30US")
+ggplot_ecodata_ts(mydata, title = "Mortgage Interest Rate - Fixed Rate 30-Year", plot.recessions = TRUE)
+```
 
+<div style="position:absolute; bottom:-55px; right:-150px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
+## Student Example: Fetch the Data
+
+```{r}
 # Identify what variables I want
 # Includes both FRED and World Bank Data sources
 variable_sources <- c(
@@ -140,8 +152,16 @@ variable_sources <- c(
   "https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG?locations=GB"
 )
 
+# Optionally, provide my own names for the variables
+variable_names <- c(
+  "Unemployment Rate: United States",
+  "Unemployment Rate: United Kingdom",
+  "Inflation Rate: United States",
+  "Inflation Rate: United Kingdom"
+)
+
 # Fetch the data 
-mydata <- get_ecodata(variable_sources)
+mydata <- get_ecodata(variable_sources, variable_names)
 
 # Get only Great Recession + Recovery
 mydata <- mydata |>
@@ -152,7 +172,7 @@ mydata <- mydata |>
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
-## Example: Plot the Data
+## Student Example: Plot the Data
 
 ```{r}
 ggplot_ecodata_facet(mydata, 
@@ -165,7 +185,7 @@ ggplot_ecodata_facet(mydata,
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
-## Example: Data Description
+## Student Example: Data Description
 
 ```{r, eval = FALSE}
 ecodata_description_table(mydata)
@@ -180,7 +200,30 @@ ecodata_description_table(mydata)
 <div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
--->
+
+## Documentation 
+
+  - All the documentation: <a href="https://murraylax.org/ecodata/" target="_blank"><strong>https://murraylax.org/ecodata/</strong></a>
+
+  - <a href="https://murraylax.org/ecodata/getting-started.html" target="_blank"><strong>Getting Started Guide</strong></a>
+
+      - Walks through many of the most common uses of the package. 
+      
+      - Download data for multiple states or countries with ease
+      
+      - Plots with multiple variables, bar plots
+      
+      - Data transformations, computing new quantities
+
+  - <a href="https://murraylax.org/ecodata/manual/reference/" target="_blank"><strong>Full reference manual</strong></a>
+  
+  - Instructional Vignettes
+  
+      - Short applications of the package to macroeconomic principles
+
+<div style="position:absolute; bottom:-55px; right:-150px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
 
 ## Why Scripting Languages?
 
@@ -267,6 +310,30 @@ ecodata_description_table(mydata)
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
+## Instructional Vignettes
+
+  - <a href="https://murraylax.org/ecodata/supply_demand_housing.html" target="_blank"><strong>Supply and Demand for Housing</strong></a>
+  
+      - Data on construction prices, new house prices, and housing starts.
+      
+      - Does a supply and demand model prediction explain the data?
+
+  - <a href="https://murraylax.org/ecodata/exchangerates_interestrates.html" target="_blank"><strong>Exchange Rates and Interest Rates</strong></a>
+  
+      - Data on exchange rates and interest rates interest rates in U.K. and U.S.
+      
+      - Does a supply and demand model for currencies explain the data?
+
+  - <a href="https://murraylax.org/ecodata/unemployment_recessions.html" target="_blank"><strong>Unemployment and Recessions</strong></a>
+  
+      - State and national data on unemployment and during the 2008-2009 recession.
+      
+  - And I will be making a lot more!
+
+<div style="position:absolute; bottom:-55px; right:-150px;">
+  <img src="qrcode.png" width="150" alt="QR Code">
+</div>
+
 ## Best Practices for Principles-Level  
   
   * Show students worked-out examples - See my vignettes!
@@ -282,7 +349,8 @@ ecodata_description_table(mydata)
 <div style="position:absolute; bottom:-55px; right:-150px;">
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>  
-  
+
+<!--  
 ## Example
 
   1. Download data for the U.S. unemployment rate, California unemployment rate, and Wisconsin unemployment rate from FRED, and filter the data to only include the years 2006-2016.
@@ -341,29 +409,7 @@ ggplot_ecodata_ts(udata, title = "Unemployment Rates", plot.recessions = TRUE)
   <img src="qrcode.png" width="150" alt="QR Code">
 </div>
 
-## Instructional Vignettes
-
-  - <a href="https://murraylax.org/ecodata/supply_demand_housing.html" target="_blank"><strong>Supply and Demand for Housing</strong></a>
-  
-      - Data on construction prices, new house prices, and housing starts.
-      
-      - Does data match a supply and demand model prediction?
-    <p/>
-
-  - <a href="https://murraylax.org/ecodata/exchangerates_interestrates.html" target="_blank"><strong>Exchange Rates and Interest Rates</strong></a>
-  
-      - Data on exchange rates and interest rates interest rates in U.K. and U.S.
-      
-      - Does data matches predictions from a supply and demand model for currencies?
-    <p/>
-
-  - <a href="https://murraylax.org/ecodata/unemployment_recessions.html" target="_blank"><strong>Unemployment and Recessions</strong></a>
-  
-      - State and national data on unemployment and during the 2008-2009 recession 
-
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
-</div>
+-->
 
 ## What Are Your Ideas?
 

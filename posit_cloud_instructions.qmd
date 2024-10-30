@@ -8,12 +8,10 @@ format: beamer
 ::: {.columns}
 
 :::: {.column width="75%"}
-
 | James M. Murray, Ph.D.
 | University of Wisconsin-La Crosse
 | Email: \texttt{jmurray@uwlax.edu}
 | \textbf{St. Louis Fed Professors' Conference}
-
 ::::
 
 :::: {.column width="20%"}
