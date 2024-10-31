@@ -65,8 +65,11 @@ Want to start using the ***ECODATA*** R package **right now**? Live on <a href="
 
 :::
 
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
 ## The Good, The Bad, and the Ugly
@@ -96,8 +99,11 @@ Want to start using the ***ECODATA*** R package **right now**? Live on <a href="
   
   - Very difficult to see much of the text
 
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
 ## Introducing the *ECODATA* R Package
@@ -124,8 +130,11 @@ Want to start using the ***ECODATA*** R package **right now**? Live on <a href="
   
 <a href="https://posit.cloud/content/9084731" target="_blank"><strong>Let's Try It Out!</strong></a>
     
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
 ## Fast Example: Two Lines of Code
@@ -135,8 +144,11 @@ mydata <- get_ecodata("https://fred.stlouisfed.org/series/MORTGAGE30US")
 ggplot_ecodata_ts(mydata, title = "Mortgage Interest Rate - Fixed Rate 30-Year", plot.recessions = TRUE)
 ```
 
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
 ## Student Example: Fetch the Data
@@ -167,8 +179,11 @@ mydata <- mydata |>
   filter(Date >= "2007-01-01" & Date <= "2016-12-31")
 ```
 
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
 ## Student Example: Plot the Data
@@ -180,8 +195,11 @@ ggplot_ecodata_facet(mydata,
                      plot.recession = TRUE)
 ```
 
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
 ## Student Example: Data Description
@@ -196,8 +214,11 @@ ecodata_description_table(mydata)
 ```
 </div>
 
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
 ## Documentation 
@@ -222,8 +243,11 @@ ecodata_description_table(mydata)
   
       - Worked-out examples using the package to explore macroeconomic principles
 
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
 ## Why Scripting Languages?
@@ -259,8 +283,11 @@ ecodata_description_table(mydata)
     -   Verification and reproducibility is key with AI-generated content
 
 
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
 ## Why Avoid Scripting Languages? 
@@ -294,8 +321,11 @@ ecodata_description_table(mydata)
   
   - Use simple reproducible code to ***analyze macroeconomics principles*** 
 
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
 ## Why *ECODATA* for Principles of Macroeconomics?
@@ -308,8 +338,11 @@ ecodata_description_table(mydata)
   
   - Repeated practice throughout undergraduate degree builds mastery
   
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
 ## Instructional Vignettes
@@ -332,8 +365,11 @@ ecodata_description_table(mydata)
       
   - And I will be making a lot more!
 
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
 <!--  
@@ -433,6 +469,9 @@ ggplot_ecodata_ts(udata, title = "Unemployment Rates", plot.recessions = TRUE)
 <br/><br/>  
 <h1>Thank you!</h1>
 
+<div style="position:absolute; bottom:110px; right:-135px;">
+  <img src="logo.png" width="120" alt="QR Code"><br/>
+</div>
 <div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
+  <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
