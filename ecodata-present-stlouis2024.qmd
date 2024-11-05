@@ -221,6 +221,18 @@ ecodata_description_table(mydata)
   <img src="qrcode.png" width="150" alt="QR Code"><br/>
 </div>
 
+## Data for All U.S. States
+
+```{r}
+unemployed <- get_ecodata_allstates_fred("https://fred.stlouisfed.org/series/MOUR")
+ggplot_ecodata_bar(unemployed,
+                   plot_at = "2020-04-01",
+                   highest = 10, 
+                   highlight = "Illinois",
+                   title = "States with Highest Unemployment Rates During COVID")
+```
+
+
 ## Documentation 
 
   - All the documentation: <a href="https://murraylax.org/ecodata/" target="_blank"><strong>https://murraylax.org/ecodata/</strong></a>
