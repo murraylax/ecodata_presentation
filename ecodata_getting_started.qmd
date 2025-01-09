@@ -20,18 +20,115 @@ format:
 
 ```{r, include=FALSE}
 # Load the library
-library(ecodata)
 library(tidyverse)
+library(htmltools)
+library(ecodata)
+library(DT)
 ```
 
 # Getting Started with ECODATA
 
-  - <a href="" target="_blank">ECODATA</a> is an R package for downloading economic data from FRED and World Bank, making reproducible, professional-quality data visualizations, and documenting your data sources
+  - <a href="" target="_blank">ECODATA</a> is an R package for downloading and visualizing economic data 
+  
+  - Can pull data from <a href="https://fred.stlouisfed.org/" target="_blank">FRED</a> and <a href="https://data.worldbank.org/" target="_blank">World Bank</a>
+  
+  - Create reproducible, professional-quality data visualizations, and documenting your data sources
 
-  - Makes this easy, with only two or three lines of code
+  - Easy only two or three lines of code
 
-# Other slide
+## Example: Morgage Interest Rate
 
+Download data on average 30-year mortgage interest rate from FRED:
+
+```{r}
+# Load the library
+library(ecodata)
+
+# Download the data, save it in a data frame called `mydata`
+mydata <- get_ecodata("https://fred.stlouisfed.org/series/MORTGAGE30US")
+```
+
+***ECODATA* data frame `mydata`:**
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+tagList(
+  tags$style(HTML("
+    table.dataTable {
+      background-color: white;
+    }
+  ")),
+  datatable(
+    arrange(mydata, desc(Date)),
+    options = list(
+      dom = 'tp',
+      pageLength = 5, 
+      columnDefs = list(
+        list(visible = FALSE, targets = 0), 
+        list(width='80px', targets=1),
+        list(width='200px', targets=2)
+        ),
+      class = 'compact',
+      rownames = FALSE
+    )
+  )
+) 
+
+```
+
+## Plot Mortgage Interest Rate
+
+```{r}
+ggplot_ecodata_ts(mydata, title = "Mortgage Interest Rate - Fixed Rate 30-Year", plot.recessions = TRUE)
+```
+
+## Information About Data
+
+Get a description of the data
+
+```{r}
+ecodata_description_table(mydata)
+```
+
+Cite the data
+
+```{r}
+ecodata_cite_table(mydata)
+```
+
+## Why use R and the *ECODATA* Package?
+
+::: {.columns}
+
+:::: {.column width="57%"}
+
+  - Reproducible: The code is the set of instructions for what you created
+  
+  - Flexible: With more knowledge of R, you can change the data, the graph, the labels, etc.
+
+  - Efficient: Easy to replicate code for similar variables, similar tasks
+  
+::::
+
+:::: {.column width="40%"}
+
+![](./computer.png){width=100%}
+
+::::
+
+:::
+
+  - Used in other courses: R is used in econometrics (ECO 307), statistics (STAT courses), and others
+
+  - Coding in R and Python used in industry, even among those who are not computer scientists or data scientists
+  
+  - Even more important / relevant with AI
+  
+    -   AI assistance makes coding more accessible
+    
+    -   Verification and reproducibility is key with AI-generated content
+
+## Getting Started
 
   1. Login / Create Posit Cloud account at <a href="https://posit.cloud" target="_blank">https://posit.cloud</a>
   
@@ -47,189 +144,110 @@ library(tidyverse)
   `ecodata::ecodata_set_fredkey("abcd1234efgh5678ijkl9012mnop3456")`<br/>
   (insert your own 32-character key, this one won't work)
 
-<div style="position:absolute; bottom:230px; right:-150px;">
-  <img src="qrcode.png" width="220" alt="QR Code">
-</div>
 
-## Great Recession & Slow Recovery
 
-::: {layout-ncol=2}
-
-![](./fred-bad.png){width=80%}
-
-![](./wb-bad-1.png){width=50%}
-
-![](./fred-bad-2.png){width=80%}
-
-![](./wb-bad-2.png){width=50%}
-
-:::
-
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
-
-## The Good, The Bad, and the Ugly
-
-<div style="position:absolute; top:90px; right:-150px;">
-  <img src="gbu-flop.png" width="400" alt="QR Code">
-</div>
-<br/>
-
-### The Good:
-
-  - Student explored data on both FRED and World Bank Data
-  
-  - Student picked relevant variables, explained it correctly
-  
-  - Cogent international comparisons of the great recession <br/><br/>
-
-### The Bad:
-
-  - Great interactive data tools can make for poor presentation visual aids
-  
-  - Time consuming to reproduce - Return to website, select features and time periods, download image, etc.<br/><br/>
-
-### The Ugly:
-
-  - Inconsistent style across FRED and World Bank Data graphs
-  
-  - Very difficult to see much of the text
-
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
-
-## Introducing the *ECODATA* R Package
-
-  - I created an R package, ***ecodata***, to facilitate visualizing data in undergraduate macroeconomics courses
-  
-  - Designed for students and novices in R, statistics, and data analysis
-  
-  - Wrapper for the ***fredr***, ***wbstats***, and ***ggplot2*** packages
-  
-  - Makes it easy to:
-  
-    - Download data from Federal Reserve Economic Data (FRED) and World Bank Data
-    
-    - Produce professional-quality data visualizations
-    
-    - View descriptions of the data
-    
-    - Cite sources
-    
-  - Do everything with 3-4 lines of code
-  
-  - **Not a substitute** for *fredr*, *wbstats*, or *ggplot2*, nor for exploring data and using interactive tools in FRED and World Bank Data
-  
-<a href="https://posit.cloud/content/9084731" target="_blank"><strong>Let's Try It Out!</strong></a>
-    
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
-
-## Fast Example: Two Lines of Code
+## Advanced Example
 
 ```{r}
-mydata <- get_ecodata("https://fred.stlouisfed.org/series/MORTGAGE30US")
-ggplot_ecodata_ts(mydata, title = "Mortgage Interest Rate - Fixed Rate 30-Year", plot.recessions = TRUE)
-```
+# Get three variables - Save the list of URLs in an objected called 'variables'
+variables <- c("https://fred.stlouisfed.org/series/FEDFUNDS",
+               "https://fred.stlouisfed.org/series/UNRATE",
+               "https://fred.stlouisfed.org/series/CPIAUCSL")
 
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
+# Make up my own names for those variables 
+varnames <- c("Federal Funds Rate", "Unemployment Rate", "CPI")
 
-## Student Example: Fetch the Data
-
-```{r}
-# Identify what variables I want
-# Includes both FRED and World Bank Data sources
-variable_sources <- c(
-  "https://fred.stlouisfed.org/series/UNRATE",
-  "https://fred.stlouisfed.org/series/AURUKM",
-  "https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG?locations=US",
-  "https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG?locations=GB"
-)
-
-# Optionally, provide my own names for the variables
-variable_names <- c(
-  "Unemployment Rate: United States",
-  "Unemployment Rate: United Kingdom",
-  "Inflation Rate: United States",
-  "Inflation Rate: United Kingdom"
-)
-
-# Fetch the data 
-mydata <- get_ecodata(variable_sources, variable_names)
+# Download all three variables, give them my own names
+# Also set frequency = "m" for monthly data
+mydata <- get_ecodata(variables, varnames = varnames, frequency = "m")
 
 # Get only Great Recession + Recovery
 mydata <- mydata |>
   filter(Date >= "2007-01-01" & Date <= "2016-12-31")
 ```
 
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
+## View of the Data
 
-## Student Example: Plot the Data
+***ECODATA* data frame `mydata`:**
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+tagList(
+  tags$style(HTML("
+    table.dataTable {
+      background-color: white;
+    }
+  ")),
+  datatable(
+    arrange(mydata, desc(Date)),
+    options = list(
+      dom = 'tp',
+      pageLength = 5, 
+      columnDefs = list(
+        list(visible = FALSE, targets = 0), 
+        list(width='100px', targets=1),
+        list(width='100px', targets=2),
+        list(width='100px', targets=3),
+        list(width='100px', targets=4)
+        ),
+      class = 'compact',
+      rownames = FALSE
+    )
+  )
+) 
+```
+
+## Compute Inflation Rate
+
+Inflation is the growth rate of the CPI
+
+```{r}
+mydata <- ecodata_compute_pctchange(mydata, variable = "CPI", new_variable = "Inflation")
+```
+
+***ECODATA* data frame `mydata`:**
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+tagList(
+  tags$style(HTML("
+    table.dataTable {
+      background-color: white;
+    }
+  ")),
+  datatable(
+    arrange(mydata, desc(Date)),
+    options = list(
+      dom = 'tp',
+      pageLength = 5, 
+      columnDefs = list(
+        list(visible = FALSE, targets = 0), 
+        list(width='100px', targets=1),
+        list(width='100px', targets=2),
+        list(width='100px', targets=3),
+        list(width='100px', targets=4),
+        list(width='100px', targets=5)
+        ),
+      class = 'compact',
+      rownames = FALSE
+    )
+  ) |>
+    formatRound(columns = "Inflation", digits = 1)
+) 
+```
+
+## Create a Faceted Plot
 
 ```{r}
 ggplot_ecodata_facet(mydata, 
-                     ncol = 2, 
-                     title = "Unemployment and Inflation in U.S. and U.K.",
-                     plot.recession = TRUE)
+  variables = c("Unemployment Rate", "Inflation", "Federal Funds Rate"),
+  ncol = 3,
+  plot.recession = TRUE,
+  title = "United States Great Recession and Recovery")
 ```
 
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
-
-## Student Example: Data Description
-
-```{r, eval = FALSE}
-ecodata_description_table(mydata)
-```
-
-<div class="scrollable-table">
-```{r, echo = FALSE}
-ecodata_description_table(mydata)
-```
-</div>
-
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
-
-## Data for All U.S. States
+## Description of the Data
 
 ```{r}
-unemployed <- get_ecodata_allstates_fred("https://fred.stlouisfed.org/series/MOUR")
-ggplot_ecodata_bar(unemployed,
-                   plot_at = "2020-04-01",
-                   highest = 10, 
-                   highlight = "Illinois",
-                   title = "States with Highest Unemployment Rates During COVID")
+ecodata_description_table(mydata)
 ```
 
 
@@ -249,241 +267,3 @@ ggplot_ecodata_bar(unemployed,
 
   - <a href="https://murraylax.org/ecodata/manual/reference/" target="_blank"><strong>Full reference manual</strong></a>
   
-  - Instructional Vignettes
-  
-      - Focus is learning *macroeconomics*, using data
-  
-      - Worked-out examples using the package to explore macroeconomic principles
-
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
-
-## Why Scripting Languages?
-
-::: {.columns}
-
-:::: {.column width="57%"}
-
-  - Reproducible: The code is the set of instructions for what you created
-  
-  - Efficient: Difficult to make the first graph, but it's easy to make the 2nd and 100th graphs!
-  
-  - Flexible: Can easily change the data, the graph, the labels, etc.
-  
-::::
-
-:::: {.column width="40%"}
-
-![](./computer.png){width=100%}
-
-::::
-
-:::
-
-  - Used in other courses: R is used in econometrics, statistics, data science, etc.
-
-  - Used in industry, even among those who are not data scientists
-  
-  - Even more important / relevant with AI
-  
-    -   AI assistance makes coding more accessible
-    
-    -   Verification and reproducibility is key with AI-generated content
-
-
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
-
-## Why Avoid Scripting Languages? 
-
-::: {.columns}
-
-:::: {.column width="57%"}
-
-  - Steep learning curve
-  
-  - Easy to do the hard things, *but hard to do the easy things*
-  
-  - ***This is Principles of Macroeconomics, not what I signed up for!*** 
-
-::::
-
-:::: {.column width="40%"}
-
-![](./frustrated.png){width=100%}
-
-::::
-
-:::
-
-
-**ECODATA Package**
-
-  - Gentle learning curve!
-  
-  - Easy to do easy things
-  
-  - Use simple reproducible code to ***analyze macroeconomics principles*** 
-
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
-
-## Why *ECODATA* for Principles of Macroeconomics?
-
-  - Data visualization is a key skill for *everyone*
-  
-  - Early introduction makes subsequent classes easier
-  
-  - Data is used throughout the economics discipline, it should be used throughout economics curriculum
-  
-  - Repeated practice throughout undergraduate degree builds mastery
-  
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
-
-## Instructional Vignettes
-
-  - <a href="https://murraylax.org/ecodata/supply_demand_housing.html" target="_blank"><strong>Supply and Demand for Housing</strong></a>
-  
-      - Data on construction prices, new house prices, and housing starts.
-      
-      - Does a supply and demand model prediction explain the data?
-
-  - <a href="https://murraylax.org/ecodata/exchangerates_interestrates.html" target="_blank"><strong>Exchange Rates and Interest Rates</strong></a>
-  
-      - Data on exchange rates and interest rates interest rates in U.K. and U.S.
-      
-      - Does a supply and demand model for currencies explain the data?
-
-  - <a href="https://murraylax.org/ecodata/unemployment_recessions.html" target="_blank"><strong>Unemployment and Recessions</strong></a>
-  
-      - State and national data on unemployment and during the 2008-2009 recession.
-      
-  - And I will be making a lot more!
-
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
-
-<!--  
-
-## Best Practices for Principles-Level  
-  
-  * Show students worked-out examples - See my vignettes!
-  
-  * Create prompts that require only 1-2 lines of code to answer the question
-  
-  * Make economics real: Compare theoretical predictions with recent data
-  
-  * Be mindful of opportunity costs - Do more data analysis means doing less of something else in the class
-  
-    - I plan on 3 or 4 short assignments for the semester
-  
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
-</div>  
-
-## Example
-
-  1. Download data for the U.S. unemployment rate, California unemployment rate, and Wisconsin unemployment rate from FRED, and filter the data to only include the years 2006-2016.
-
-  2. Plot the U.S. unemployment rate from 2006-2016. Describe the behavior of the unemployment rate before, during, and years after the recession. Is the situation back to normal at the end of the recession? What do you notice about economic recoveries?
-  
-  3. Plot the U.S. unemployment rate along with Wisconin's and California's unemployment rate. What do you notice about the differences in the unemployment rates between these states?
-
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
-</div>
-
-## Example - \#1: Download Data
-
-```{r}
-data_sources <- c(
-  "https://fred.stlouisfed.org/series/UNRATE",
-  "https://fred.stlouisfed.org/series/WIUR",
-  "https://fred.stlouisfed.org/series/CAUR"
-)
-
-variable_names <- c("U.S. Unemployment Rate", "Wisconsin Unemployment Rate", "California Unemployment Rate")
-
-# Download the data
-udata <- get_ecodata(data_sources, variable_names)
-
-# Filter for only 2006-2013
-udata <- udata |>
-  filter(Date >= "2006-01-01", Date <= "2018-12-31")
-```
-
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
-</div>
-
-## Example - \#2: U.S. Unemployment Rate
-
-```{r}
-ggplot_ecodata_ts(udata, 
-                  variables = "U.S. Unemployment Rate",
-                  title = "U.S. Unemployment Rate",
-                  plot.recessions = TRUE)
-```
-
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
-</div>
-
-## Example - \#3: Plot U.S., Wisconsin, and California Unemployment Rates
-
-```{r}
-ggplot_ecodata_ts(udata, title = "Unemployment Rates", plot.recessions = TRUE)
-```
-
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code">
-</div>
-
--->
-
-## What Are Your Ideas?
-
-  - Do you have or envision a short low-stakes assignment where students visualize macroeconomic data?
-  
-  - Answer these questions about one such assignment:
-  
-    1. What is the macroeconomics concept or theory that students apply?
-    
-    2. What variables do the students need?
-    
-    3. What will the students discover?
-  
-  - Share your ideas! Email: <strong>jmurray@uwlax.edu</strong>
-  
-  - What me to create instructional vignette around your idea? Let me know!
-
-<br/><br/>  
-<h1>Thank you!</h1>
-
-<div style="position:absolute; bottom:110px; right:-135px;">
-  <img src="logo.png" width="120" alt="QR Code"><br/>
-</div>
-<div style="position:absolute; bottom:-55px; right:-150px;">
-  <img src="qrcode.png" width="150" alt="QR Code"><br/>
-</div>
