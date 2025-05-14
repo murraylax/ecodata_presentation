@@ -12,9 +12,9 @@ format:
     smaller: true
     slideNumber: true   # Displays slide numbers
     slide-number-start-at: 1  # Start counting at the second slide
-    footer: '<a href="https://murraylax.org/ecodata/" target="_blank">https://murraylax.org/ecodata/</a>'
     embed-resources: true
-    css: custom-revealjs.css
+    css: 
+      - custom-revealjs.css
 
 ---
 
@@ -28,7 +28,7 @@ library(DT)
 
 # Getting Started with ECODATA
 
-  - <a href="" target="_blank">ECODATA</a> is an R package for downloading and visualizing economic data 
+  - <a href="https://murraylax.org/ecodata/" target="_blank">ECODATA</a> is an R package for downloading and visualizing economic data 
   
   - Can pull data from <a href="https://fred.stlouisfed.org/" target="_blank">FRED</a> and <a href="https://data.worldbank.org/" target="_blank">World Bank</a>
   
@@ -48,7 +48,7 @@ library(ecodata)
 mydata <- get_ecodata("https://fred.stlouisfed.org/series/MORTGAGE30US")
 ```
 
-***ECODATA* data frame `mydata`:**
+## *ECODATA* data frame `mydata`:
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 tagList(
@@ -165,9 +165,7 @@ mydata <- mydata |>
   filter(Date >= "2007-01-01" & Date <= "2016-12-31")
 ```
 
-## View of the Data
-
-***ECODATA* data frame `mydata`:**
+## View of the *ECODATA* data frame `mydata` 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 tagList(
@@ -203,7 +201,7 @@ Inflation is the growth rate of the CPI
 mydata <- ecodata_compute_pctchange(mydata, variable = "CPI", new_variable = "Inflation")
 ```
 
-***ECODATA* data frame `mydata`:**
+## View of the *ECODATA* data frame `mydata` 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 tagList(
@@ -235,7 +233,7 @@ tagList(
 
 ## Create a Faceted Plot
 
-```{r}
+```{r, fig.alt="Three plots: The unemployment rate, inflation rate, and the federal funds rate"}
 ggplot_ecodata_facet(mydata, 
   variables = c("Unemployment Rate", "Inflation", "Federal Funds Rate"),
   ncol = 3,
