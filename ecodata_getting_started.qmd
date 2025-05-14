@@ -51,7 +51,6 @@ mydata <- get_ecodata("https://fred.stlouisfed.org/series/MORTGAGE30US")
 ***ECODATA* data frame `mydata`:**
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
 tagList(
   tags$style(HTML("
     table.dataTable {
@@ -78,7 +77,7 @@ tagList(
 
 ## Plot Mortgage Interest Rate
 
-```{r}
+```{r, fig.alt="Line plot of mortgage interest rate"}
 ggplot_ecodata_ts(mydata, title = "Mortgage Interest Rate - Fixed Rate 30-Year", plot.recessions = TRUE)
 ```
 
@@ -112,7 +111,7 @@ ecodata_cite_table(mydata)
 
 :::: {.column width="40%"}
 
-![](./computer.png){width=100%}
+![](./computer.png){width=100% fig-alt="A computer with a person typing code."}
 
 ::::
 
